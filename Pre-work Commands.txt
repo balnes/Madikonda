@@ -1,0 +1,31 @@
+uname -a; date; cat /etc/redhat-release; uptime; df -h; df -h|wc -l; ifconfig -a; cat /etc/sysconfig/network; cat /etc/hosts; ls -l /etc/sysconfig/network-scripts/ifcfg-e*; last |grep -i eb; yum repolist; pvs; lvs; vgs; ps -ef; fdisk -lu; mount -v
+
+
+
+Patching Procedure
+------------------
+
+1. Information mail
+2. Pre-implementation notification.
+3. suppress the alerts / Apply Blackout  -- Rhythm Team
+4. Need to stop Applications running on mentioned servers.
+5. Need to take back-up on list of servers.
+6. UnSuppress Alerts -- Rhythm Team
+7. Post-implementation notification.
+8. Need to delete AMI / Backup
+
+
+992  2018-12-28 02:13:08 uname -a; date; cat /etc/redhat-release; uptime; df -h; df -h|wc -l; ifconfig -a; cat /etc/sysconfig/network; cat /etc/hosts; ls -l /etc/sysconfig/network-scripts/ifcfg-e*; last |grep -i eb; yum repolist; pvs; lvs; vgs; ps -ef; fdisk -lu; mount -v
+  995  2018-12-28 02:30:26 uptime
+  996  2018-12-28 02:44:45 yum check-update --security
+  997  2018-12-28 02:45:22 yum update --security
+  998  2018-12-28 02:52:36 uname -a
+  999  2018-12-28 02:52:42 init 6
+ 1000  2018-12-28 02:54:16 uptime
+ 1001  2018-12-28 02:54:20 uname -a
+ 1002  2018-12-28 02:54:33 uname -a; date; cat /etc/redhat-release; uptime; df -h; df -h|wc -l; ifconfig -a; cat /etc/sysconfig/network; cat /etc/hosts; ls -l /etc/sysconfig/network-scripts/ifcfg-e*; last |grep -i eb; yum repolist; pvs; lvs; vgs; ps -ef; fdisk -lu; mount -v
+ 1003  2018-12-28 02:56:25 tail history
+[root@USED1HCLAEM0141 ~]#
+
+
+

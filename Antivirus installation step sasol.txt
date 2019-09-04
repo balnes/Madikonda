@@ -1,0 +1,81 @@
+copy the folder from below path
+
+scp -r 10.138.255.57:/tmp/Antivirus /tmp/
+
+Unistall old: 
+
+rpm -e McAfeeVSEForLinux-2.0.3.29216-29216.x86_64
+rpm -e MFEcma
+rpm -e MFErt
+
+
+Install New:
+
+goto /tmp
+cd Antivirus
+
+unzip McaFEENEW.ZIP
+after unzip go to below directory
+McAfee for Linux
+
+unzip agentPackages.zip
+
+
+install
+sh installrpm.sh -i
+
+Check with below command for status
+/etc/init.d/cma status
+
+Go back to antivirus directory
+
+./isectp-setup
+
+unzip ISecTP-10.5.3-1650-Release-ePO.zip if needed
+
+
+mcafee version chck:
+rpm -q MFEcma
+
+> /opt/McAfee/cma/bin
+> ./msaconfig -v
+
+signature verify:
+> /opt/isec/ens/threatprevention/bin/isecav --version
+> rpm -qa | grep -i isec
+> /opt/NAI/package/McAfeeVSEForLinux
+
+
+
+how to update DAT :
+1. go to mcafee url:
+> https://www.mcafee.com/enterprise/en-us/downloads/security-updates.html
+
+2. download the latest dat file version for linux env
+3. move the file to the server in tmp/dat directory
+4. unzip the file
+5. goto /opt/isec/ens/threatprevention/var/engine/dat/
+unzip avvdat-<DAT version>.zip 
+6. mkdir with the updated version 
+ex: mkdir 9168
+7. chmod 600 9168
+8. Copy DAT files under the directory created in step 5, and change the permission to the correct one. For example: 
+ 
+# cp /tmp/dat/*.dat /opt/isec/ens/threatprevention/var/engine/dat/8372
+# chmod 600 /opt/isec/ens/threatprevention/var/engine/dat/8372/* 
+ 
+Edit the /opt/isec/ens/threatprevention/var/prefs.xml file and change the value of the <MajorDATVersion> tag to the DAT version to which you want to update. For example, if the DAT version you downloaded is 8372: 
+ 
+<MajorDATVersion>8372</MajorDATVersion>
+<ExtraDATVersion>0</ExtraDATVersion>
+<MajorEngineVersion>5800</MajorEngineVersion>
+<MinorDATVersion>0</MinorDATVersion>
+<MinorEngineVersion>7501</MinorEngineVersion> 
+ 
+Restart the isectpd service to reflect the change: 
+ 
+# /opt/isec/ens/threatprevention/bin/isectpdControl.sh restart 
+ 
+Confirm the DAT version is reflected as expected and that the following command shows the correct version for the DAT Version item: 
+ 
+# /opt/isec/ens/threatprevention/bin/isecav --version
